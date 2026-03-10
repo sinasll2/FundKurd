@@ -124,6 +124,33 @@
 
     <div class="toast" id="toast" data-i18n="code_copied">کود هاتە کۆپیکرن</div>
 
+        <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const welcomeModal = document.getElementById('welcome-modal');
+            
+            if (welcomeModal) {
+                setTimeout(() => {
+                    welcomeModal.classList.add('active');
+                }, 500);
+            }
+        });
+
+        function closeWelcomeModal(event) {
+            if (!event || event.target.id === 'welcome-modal' || event.target.closest('.close-modal')) {
+                document.getElementById('welcome-modal').classList.remove('active');
+            }
+        }
+
+        function toggleSidebar() {
+        }
+
+        function closeModal(event) {
+            if (!event || event.target.id === 'modal-overlay' || event.target.closest('.close-modal')) {
+                document.getElementById('modal-overlay').classList.remove('active');
+            }
+        }
+    </script>
+
 <script>
     const firebaseConfig = {
         apiKey: "AIzaSyAl0isgL-Kycr_Z2qSlWbH5Bqn0QL-0Il8",
@@ -1278,3 +1305,4 @@
 </script>
 </body>
 </html>
+
