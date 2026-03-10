@@ -921,22 +921,6 @@ main {
             transform: translateY(0) scale(1);
         }
 
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            color: var(--muted);
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .close-modal:hover {
-            color: var(--text);
-        }
-
         .btn {
             padding: 12px 20px;
             border-radius: var(--radius);
@@ -962,3 +946,4 @@ main {
             color: var(--text);
             border: 1px solid var(--border);
         }
+
