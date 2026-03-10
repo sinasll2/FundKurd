@@ -102,6 +102,26 @@
         </div>
     </div>
 
+        <div class="modal-overlay" id="welcome-modal" onclick="closeWelcomeModal(event)">
+        <div class="modal-content" style="text-align: center; padding: 40px 20px 30px;" onclick="event.stopPropagation()">
+            <button class="close-modal" onclick="closeWelcomeModal()" style="left: 15px; right: auto;"><i class="fas fa-times"></i></button>
+            
+            <div style="font-size: 48px; color: var(--gold); margin-bottom: 20px;">
+                <i class="fas fa-bell"></i>
+            </div>
+                        
+            <p data-i18n="for-more" style="margin-bottom: 30px; font-size: 1rem; line-height: 1.6; color: var(--muted);">
+بۆ دیتنا نووترین پێزانین و ئۆفەران، سەرەدانا چەنالێ مە یێ تێلیگرامێ بکە، یان ژی بۆ پتر روهنکرنێ نامەیەکێ بۆ مە فرێ بکە
+            </p>
+            
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <a data-i18n="our-channel" href="https://t.me/fundkurd" target="_blank" class="btn primary-btn" onclick="closeWelcomeModal()">
+                    <i class="fab fa-telegram"></i> چەنالێ مە
+                </a>
+            </div>
+        </div>
+    </div>
+
     <div class="toast" id="toast" data-i18n="code_copied">کود هاتە کۆپیکرن</div>
 
 <script>
@@ -168,6 +188,8 @@
             'visit_website': 'سەرەدانا مالپەری بکە',
             'code_copied': 'کود هاتە کۆپیکرن',
             'no_firms_found': 'هیچ کۆمپانیایەک نەدۆزرایەوە.',
+            'for-more': 'ل نێزیک … 🔥 ڕێکارێن ب دەستڤەئینانا ئەکاونتێن بێبەرامبەر بەلاڤ کەین، ببە ئەندام د چەنالێ مە دا، دا کو ئەڤ دەرفەتە ژ دەستێن تە نەچیت!',
+            'our-channel': 'چەنالێ مە',
             
             'biggestDiscount': 'مەزنترین داشکاندن',
             'bestModel': 'باشترین مودێل',
@@ -266,6 +288,8 @@
             'visit_website': 'سەردانی ماڵپەڕ بکە',
             'code_copied': 'کۆد کۆپی کرایەوە',
             'no_firms_found': 'هیچ کۆمپانیایەک نەدۆزرایەوە.',
+            'for-more': 'بەم زووانە ... 🔥 ڕێکارەکانی بەدەستهێنانی ئەکاونتی بێبەرامبەر بڵاو دەکەینەوە، ببە بە ئەندام لە چەناڵەکەمان بۆ ئەوەی ئەم دەرفەتە لە دەست نەدەیت!',
+            'our-channel': 'چەناڵەکەمان',
 
             'biggestDiscount': 'گەورەترین داشکاندن',
             'bestModel': 'باشترین مودێل',
