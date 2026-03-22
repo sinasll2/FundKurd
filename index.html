@@ -35,6 +35,9 @@
             <a href="#" class="nav-link" onclick="showPage(event, 'rulesExplanation')">
                 <i class="fas fa-book-open"></i> <span data-i18n="rules_explanation_title">شلوڤەکرنا یاسایان</span>
             </a>
+            <a href="#" class="nav-link" onclick="showPage(event, 'calculator')">
+            <i class="fas fa-calculator"></i> <span data-i18n="calculator_nav">هەژمارکەر</span>
+            </a>
             <a href="#" class="nav-link disabled">
                 <i class="fas fa-trophy"></i> <span>پێشبڕکێ</span>
             </a>
@@ -69,6 +72,52 @@
                 </div>
                 <div class="grid" id="rules-explanation-grid"></div>
             </section>
+
+            <section id="calculator" class="page-section">
+    <div class="hero">
+        <h1 data-i18n="calc_title">هەژمارکەرا پێگیربوونێ</h1>
+        <p data-i18n="calc_desc" style="color: white; font-size: 0.9rem; opacity: 0.95; max-width: 85%; line-height: 1.6; margin-top: 15px;"></p>
+    </div>
+    
+    <div class="card" style="max-width: 500px; margin: 0 auto; direction: rtl;">
+        <div class="input-group" style="margin-bottom: 20px; text-align: start;">
+            <label data-i18n="calc_biggest_day" style="display: block; margin-bottom: 8px; color: var(--gold); font-weight: bold;"></label>
+            <div style="position: relative;">
+                <span style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--muted); font-weight: bold;">$</span>
+                <input type="number" id="biggestDay" placeholder="800" min="0" step="0" style="width: 100%; padding: 12px 15px 12px 35px; border-radius: 8px; border: 1px solid #333; background: rgba(0,0,0,0.3); color: white; direction: ltr; font-size: 1rem;">
+            </div>
+        </div>
+
+        <div class="input-group" style="margin-bottom: 20px; text-align: start;">
+            <label data-i18n="calc_total_profit" style="display: block; margin-bottom: 8px; color: var(--gold); font-weight: bold;"></label>
+            <div style="position: relative;">
+                <span style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--muted); font-weight: bold;">$</span>
+                <input type="number" id="totalProfit" placeholder="3050" min="0" step="0" style="width: 100%; padding: 12px 15px 12px 35px; border-radius: 8px; border: 1px solid #333; background: rgba(0,0,0,0.3); color: white; direction: ltr; font-size: 1rem;">
+            </div>
+        </div>
+
+        <div class="input-group" style="margin-bottom: 25px; text-align: start;">
+            <label data-i18n="calc_target_percent" style="display: block; margin-bottom: 8px; color: var(--gold); font-weight: bold;"></label>
+            <div style="position: relative;">
+                <span style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--muted); font-weight: bold;">%</span>
+                <input type="number" id="targetPercent" value="20" placeholder="20" min="1" max="100" style="width: 100%; padding: 12px 15px 12px 35px; border-radius: 8px; border: 1px solid #333; background: rgba(0,0,0,0.3); color: white; direction: ltr; font-size: 1rem;">
+            </div>
+        </div>
+
+        <button class="btn primary-btn" style="width: 100%; font-size: 1.1rem; padding: 12px;" onclick="calculateConsistency()" data-i18n="calc_btn">هەژمارکرن</button>
+
+        <div id="resultsSection" style="display: none; margin-top: 25px; padding-top: 20px; border-top: 1px solid #333;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <span data-i18n="calc_current_score" style="font-weight: bold; color: white;"></span>
+                <b id="scoreDisplay" style="color: var(--gold); font-size: 1.5rem; direction: ltr;">0%</b>
+            </div>
+            
+            <div id="statusBox" style="padding: 15px; border-radius: 8px; text-align: center; font-weight: bold; margin-bottom: 15px; font-size: 1.1rem;"></div>
+            
+            <div id="mathExplanation" style="font-size: 0.95rem; line-height: 1.8; color: var(--muted); text-align: right;"></div>
+        </div>
+    </div>
+</section>
 
             <section id="about" class="page-section">
                 <div class="hero">
@@ -217,6 +266,22 @@
             'no_firms_found': 'هیچ کۆمپانیایەک نەدۆزرایەوە.',
             'for-more': 'چەوانییا وەرگرتنا ئەکاونتێ بێ بەرامبەر <br> نوکە ل چەنالێ مە بەردەستە 🔥',
             'our-channel': 'چەنالێ مە',
+            'get_payout_maven': '١٠ روژێن کارکرنێ',
+            
+            'calculator_nav': 'هەژمارکەر',
+            'calc_title': 'هەژمارکەرا پێگیربوونێ',
+            'calc_desc': 'رێژەیا پێگیربوونا (Consistency) خۆ بهەژمێرە و بزانە کا تو یێ ئامادەی بۆ ڕاکێشانا قازانجی.',
+            'calc_biggest_day': 'مەزنترین قازانجا رۆژانە (Biggest Day)',
+            'calc_total_profit': 'کۆیێ قازانجێ نوکە (Total Profit)',
+            'calc_target_percent': 'ئارمانجا پێگیربوونێ (Consistency Rule) %',
+            'calc_btn': 'هەژمارکرن',
+            'calc_current_score': 'رێژەیا پێگیربوونا تە:',
+            'calc_error': 'هیڤییە ژمارەیێن دروست بنڤیسە.',
+            'calc_error_zero': 'کۆیێ قازانجێ نابیت سفر بیت.',
+            'calc_status_pass': 'ئامادەیە بۆ ڕاکێشانا پارەی ✅',
+            'calc_status_fail': 'بەردەوام بە ژ بازرگانیێ ⏳',
+            'calc_pass_msg': 'رێژەیا تە <b>{score}%</b> یە، کو دبن رێژەیا رێپێدای دایە (<b>{target}%</b>).<br><br>تە قازانجەکێ باش کرییە هەڤبەر ب مەزنترین رۆژا تە (<b>{biggest}$</b>). تو یێ ئامادەی!',
+            'calc_fail_msg': 'رێژەیا تە <b>{score}%</b> یە، کو ژ رێژەیا رێپێدای <b>{target}%</b> بلندترە.<br><br>ب مەزنترین رۆژا <b>{biggest}$</b>، پێدڤییە قازانجێ تەیێ گشتی بگەهیتە <b>{required}$</b> دا کو بشێی پارەی ڕاکێشی.<br><br>تۆ پێدڤی ب <b>+{needed}$</b> قازانجێ دی (بێی کو رۆژەکا مەزنتر چێکەی) دا کو رێژەیا تە بهێتە خوار بۆ {target}%.',
             
             'biggestDiscount': 'مەزنترین داشکاندن',
             'bestModel': 'باشترین مودێل',
@@ -243,17 +308,21 @@
             'phase_two': 'قۆناغا دووێ',
             'phase_three': 'قۆناغا سیێ',
             'notes_prefix': 'تێبینی:',
+            'minimuim_withdraw':'پشتی ٣٪ قازانجی دشێی بکێشی',
 
             'firm_gft_payout': '١٤ روژان جارەکێ',
             'firm_gft_profit_split': '٨٠٪ هەتا ١٠٠٪',
             'firm_gft_guarantee': 'ئەگەر دماوێ ٤٨ دەمژمێران دا قازانجێ تە نە هاتە دان، دێ ٥٠٠$ زێدەتر لسەر قازانجێ خو وەرگری',
+            'firm_mavem_guarantee': 'ل ڕۆژێن شەمبی و ئێکشەمبی یا ژی بازرگانیێ ب زێڕی بکە',
 
             'note_all_accounts_same_rules': 'هەمی هەژمارێن ڤێ مودێلێ هەمان یاسا هەنە',
             'note_one_time_account': 'بتنێ ئێک جار دشێی ڤێ هەژمارێ دەستخوڤەبینی',
+            'note_24hrs_account': 'پشتی ئێکەم ترەید، ئەڤ ئەکاونتە دماوێ ٢٤ دەمژمێراندا بسەرڤەدچیت',
             'note_goat_blitz_temp': 'ئەڤ مودێلە ب شێوەکێ دەمکی و بتنێ ل دوو بهێنڤەدانێن هەیڤێ ژ نشکەکیڤە دهێت',
             'note_pay_later': 'بتنێ ٥$ وەک پێشەکی، پاشی پارێ ڤێ هەژمارێ پشتی دەرچوونێ دهێتە دان و هەمی هەژمارێن ڤێ مودێلێ هەمان یاسا هەنە',
             'note_daily_profit_required': '(هەر رۆژەک پێدڤی ب ٠,٥٪ قازانجیە)',
             'days_duration': 'روژ',
+            'maven_news':'دەستوور دای نینە چ مامەلەیان ڤەکەی یان بگری، د ماوێ ٢ خولەکان بەری و ٢ خولەکان پشتی بەلاڤبوونا دەنگوباسێن ئابووری یێن گرنگ',
 
             'buy_one_get_one_free': 'ئێکێ بکرە، ئێکێ دیاری وەربگرە',
             'new_trader_discount': 'داشکاندن بۆ بازرگانێن نوی',
@@ -317,6 +386,22 @@
             'no_firms_found': 'هیچ کۆمپانیایەک نەدۆزرایەوە.',
             'for-more': 'چوونیەتی بەدەستهێنانی ئەکاونتی بێبەرامبەر <br> ئێستا لە چەناڵەکەمان بەردەستە 🔥',
             'our-channel': 'چەناڵەکەمان',
+            'get_payout_maven': '١٠ روژی کارکردن',
+
+            'calculator_nav': 'هەژمارکەر',
+            'calc_title': 'هەژمارکەری پابەندبوون',
+            'calc_desc': 'ڕێژەی پابەندبوونی (Consistency) خۆت هەژمار بکە و بزانە ئایا ئامادەی بۆ ڕاکێشانی قازانج.',
+            'calc_biggest_day': 'گەورەترین قازانجی ڕۆژانە (Biggest Day)',
+            'calc_total_profit': 'کۆی قازانجی ئێستا (Total Profit)',
+            'calc_target_percent': 'ئامانجی پابەندبوون (Consistency Rule) %',
+            'calc_btn': 'هەژمارکردن',
+            'calc_current_score': 'ڕێژەی پابەندبوونت:',
+            'calc_error': 'تکایە ژمارەی دروست بنووسە.',
+            'calc_error_zero': 'کۆی قازانج نابێت سفر بێت.',
+            'calc_status_pass': 'ئامادەیە بۆ ڕاکێشانی پارە ✅',
+            'calc_status_fail': 'بەردەوام بە لە بازرگانی ⏳',
+            'calc_pass_msg': 'ڕێژەکەت <b>{score}%</b> یە، کە لە خوار ڕێژەی ڕێگەپێدراوەوەیە (<b>{target}%</b>).<br><br>قازانجێکی باشی کۆکردۆتەوە بەراورد بە گەورەترین ڕۆژت (<b>{biggest}$</b>). تۆ ئامادەی!',
+            'calc_fail_msg': 'ڕێژەکەت <b>{score}%</b> یە، کە لە ڕێژەی ڕێگەپێدراو <b>{target}%</b> بەرزترە.<br><br>بە گەورەترین ڕۆژی <b>{biggest}$</b>، پێویستە کۆی قازانجەکەت بگاتە <b>{required}$</b> بۆ ئەوەی بتوانیت پارە ڕابکێشیت.<br><br>تۆ پێویستت بە <b>+{needed}$</b> قازانجی ترە (بەبێ ئەوەی ڕۆژێکی گەورەتر دروست بکەیت) بۆ ئەوەی ڕێژەکەت دابەزێت بۆ {target}%.',
 
             'biggestDiscount': 'گەورەترین داشکاندن',
             'bestModel': 'باشترین مودێل',
@@ -343,17 +428,22 @@
             'phase_two': 'قۆناغی دووەم',
             'phase_three': 'قۆناغی سێیەم',
             'notes_prefix': 'تێبینی:',
+            'minimuim_withdraw':'لە دوای ٣٪ قازانج دەتوانی ڕابکێشیت',
 
             'firm_gft_payout': 'هەر ١٤ ڕۆژ جارێک',
             'firm_gft_profit_split': '٨٠٪ بۆ ١٠٠٪',
             'firm_gft_guarantee': 'ئەگەر لە ماوەی ٤٨ کاتژمێردا قازانجەکەت نەدرا، ٥٠٠$ زیاتر لەسەر قازانجەکەت وەردەگریت',
+            'firm_mavem_guarantee': 'لە ڕۆژانی شەممە و یەکشەممەشدا بازرگانی بە زێڕەوە بکە',
+
 
             'note_all_accounts_same_rules': 'هەموو ئەکاونتەکانی ئەم مۆدێلە هەمان یاسایان هەیە',
             'note_one_time_account': 'تەنها یەک جار دەتوانیت ئەم ئەکاونتە بەدەست بهێنیت',
+            'note_24hrs_account': 'دوای یەکەم ترەید، ئەم ئەکاونتە لە ماوەی ٢٤ کاتژمێردا بەسەردەچێت',
             'note_goat_blitz_temp': 'ئەم مۆدێلە بە شێوەیەکی کاتی و تەنها لە دوو پشووی مانگدا بەناکاو دێت',
             'note_pay_later': 'تەنها ٥$ وەک پێشەکی، پاشان نرخی ئەم ئەکاونتە دوای دەرچوون دەدرێت و هەموو ئەکاونتەکانی ئەم مۆدێلە هەمان یاسایان هەیە',
             'note_daily_profit_required': '(هەر ڕۆژێک پێویستی بە ٠,٥٪ قازانجە)',
             'days_duration': 'ڕۆژ',
+            'maven_news':'ڕێگەپێدراو نییە هیچ مامەڵەیەک بکەیتەوە یان دابخەیت لە ماوەی ٢ خولەک پێش و ٢ خولەک دوای بڵاوبوونەوەی هەواڵە ئابوورییە گرنگەکان',
 
             'buy_one_get_one_free': 'یەکێک بکڕە، یەکێکی دیکە بە دیاری وەربگرە',
             'new_trader_discount': 'داشکاندن بۆ بازرگانانی نوێ',
@@ -695,7 +785,7 @@
                         {
                             phase: "قۆناغا دووێ",
                             daily: "٤٪",
-                            max: "١0٪",
+                            max: "١٠٪",
                             target: "٦٪",
                             consistency: undefined,
                             rules: undefined,
@@ -801,6 +891,239 @@
             ]
         }
     ];
+
+    propFirms.push({
+    id: 2,
+    name: "Maven",
+    code: "MATCH",
+    logo: "MV.jpg",
+    cheapest: "١٣ دولار",
+    cheapestIQD: "٢٠,٠٠٠ دیناران",
+    biggestDiscount: "٤٪",
+    payout: "get_payout_maven",
+    profitSplit: "٨٠٪",
+    platforms: "MT5 - MatchTrader",
+    link: "https://maventrading.com/?ref=y2viyzr",
+    guarantee: 'firm_mavem_guarantee',
+    models: [
+        {
+            name: "1 Step",
+            notes: ["note_all_accounts_same_rules"],
+            accounts: [
+                { size: "٢,٠٠٠$", price: "١٥$" },
+                { size: "٥,٠٠٠$", price: "١٩$" },
+                { size: "١٠,٠٠٠$", price: "٣٧$" },
+                { size: "٢٠,٠٠٠$", price: "٦٨$" },
+                { size: "٥٠,٠٠٠$", price: "١٧٠$" },
+                { size: "١٠٠,٠٠٠$", price: "٣٨٠$" }
+            ],
+            phases: [
+                {
+                    phase: "قۆناغا هەڵسەنگاندنێ",
+                    daily: "٣٪",
+                    max: "٥٪ (دیفچوون)",
+                    target: "٨٪",
+                    consistency: 'نینە',
+                    rules: 'نینە',
+                    mdays: 'نینە',
+                    mdaysNoteKey: 'note_daily_profit_required',
+                    expiration: 'نینە',
+                    tradenews: 'maven_news',
+                    holdweekends: "بەلێ"
+                },
+                {
+                    phase: "قۆناغا فەندکری",
+                    daily: "٣٪",
+                    max: "٥٪ (دیفچوون)",
+                    target: "نینە",
+                    consistency: 'نینە',
+                    rules: 'نینە',
+                    mdays: 'نینە',
+                    mdaysNoteKey: 'note_daily_profit_required',
+                    expiration: 'نینە',
+                    tradenews: 'maven_news',
+                    holdweekends: "بەلێ"
+                }
+            ]
+        },
+
+        {
+            name: "2 Step",
+            notes: ["note_all_accounts_same_rules"],
+            accounts: [
+                { size: "٢,٠٠٠$", price: "١٩$" },
+                { size: "٥,٠٠٠$", price: "٢٢$" },
+                { size: "١٠,٠٠٠$", price: "٤٤$" },
+                { size: "٢٠,٠٠٠$", price: "٨٨$" },
+                { size: "٥٠,٠٠٠$", price: "٢٢٠$" },
+                { size: "١٠٠,٠٠٠$", price: "٤٤٠$" }
+            ],
+            phases: [
+                {
+                    phase: "قۆناغا ئێکێ",
+                    daily: "٤٪",
+                    max: "٨٪",
+                    target: "٨٪",
+                    consistency: 'نینە',
+                    rules: 'نینە',
+                    mdays: 3,
+                    mdaysNoteKey: 'note_daily_profit_required',
+                    expiration: undefined,
+                    tradenews: 'maven_news',
+                    holdweekends: "بەلێ"
+                },
+                {
+                    phase: "قۆناغا دووێ",
+                    daily: "٤٪",
+                    max: "٨٪",
+                    target: "٥٪",
+                    consistency: undefined,
+                    rules: undefined,
+                    mdays: 3,
+                    mdaysNoteKey: 'note_daily_profit_required',
+                    expiration: undefined,
+                    tradenews: 'maven_news',
+                    holdweekends: "بەلێ"
+                },
+                {
+                    phase: "قۆناغا فەندکری",
+                    daily: "٤٪",
+                    max: "٨٪",
+                    target: "نینە",
+                    consistency: 'نینە',
+                    rules: 'نینە',
+                    mdays: 'نینە',
+                    mdaysNoteKey: 'note_daily_profit_required',
+                    expiration: 'نینە',
+                    tradenews: 'maven_news',
+                    holdweekends: "بەلێ"
+                }
+            ]
+        },
+
+        {
+            name: "3 Step",
+            notes: ["note_all_accounts_same_rules"],
+            accounts: [
+                { size: "٢,٠٠٠$", price: "١٣$" },
+                { size: "٥,٠٠٠$", price: "١٧$" },
+                { size: "١٠,٠٠٠$", price: "٣٨$" },
+                { size: "٢٠,٠٠٠$", price: "٧٦$" },
+                { size: "٥٠,٠٠٠$", price: "١٩٠$" },
+                { size: "١٠٠,٠٠٠$", price: "٢٩٩$" }
+            ],
+            phases: [
+                {
+                    phase: "قۆناغا ئێکێ",
+                    daily: "٢٪",
+                    max: "٣٪",
+                    target: "٣٪",
+                    consistency: "نینە",
+                    rules: "نینە",
+                    mdays: "نینە",
+                    mdaysNoteKey: 'note_daily_profit_required',
+                    expiration: "نینە",
+                    tradenews: 'maven_news',
+                    holdweekends: "بەلێ"
+                },
+                {
+                    phase: "قۆناغا دووێ",
+                    daily: "٢٪",
+                    max: "٣٪",
+                    target: "٣٪",
+                    consistency: "نینە",
+                    rules: "نینە",
+                    mdays: "نینە",
+                    mdaysNoteKey: 'note_daily_profit_required',
+                    expiration: "نینە",
+                    tradenews: 'maven_news',
+                    holdweekends: "بەلێ"
+                },
+                {
+                    phase: "قۆناغا سیێ",
+                    daily: "٢٪",
+                    max: "٣٪",
+                    target: "٣٪",
+                    consistency: "نینە",
+                    rules: "نینە",
+                    mdays: "نینە",
+                    mdaysNoteKey: 'note_daily_profit_required',
+                    expiration: "نینە",
+                    tradenews: 'maven_news',
+                    holdweekends: "بەلێ"
+                },
+                {
+                    phase: "قۆناغا فەندکری",
+                    daily: "٢٪",
+                    max: "٣٪",
+                    target: "نینە",
+                    consistency: "نینە",
+                    rules: "نینە",
+                    mdays: "نینە",
+                    mdaysNoteKey: 'note_daily_profit_required',
+                    expiration: "نینە",
+                    tradenews: 'maven_news',
+                    holdweekends: "بەلێ"
+                }
+            ]
+        },
+
+        {
+            name: "Instant",
+            notes: ["note_all_accounts_same_rules"],
+            accounts: [
+                { size: "٢,٠٠٠$", price: "١٥$" },
+                { size: "٥,٠٠٠$", price: "١٩$" },
+                { size: "١٠,٠٠٠$", price: "٣٧$" },
+                { size: "٢٠,٠٠٠$", price: "٦٨$" },
+                { size: "٥٠,٠٠٠$", price: "١٧٠$" },
+                { size: "١٠٠,٠٠٠$", price: "٣٨٠$" }
+            ],
+            phases: [
+                {
+                    phase: "قۆناغا فەندکری",
+                    daily: "٢٪ (دیفچوون)",
+                    max: "٣٪ (دیفچوون)",
+                    target: 'minimuim_withdraw',
+                    consistency: "٢٠٪",
+                    rules: "١٪",
+                    mdays: 5,
+                    mdaysNoteKey: 'note_daily_profit_required',
+                    expiration: undefined,
+                    tradenews: 'maven_news',
+                    holdweekends: "بەلێ"
+                }
+            ]
+        },
+
+        {
+            name: "Mini",
+            notes: ["note_24hrs_account"],
+            accounts: [
+                { size: "٢,٠٠٠$", price: "١٣$" },
+                { size: "٥,٠٠٠$", price: "١٧$" },
+                { size: "١٠,٠٠٠$", price: "٣٨$" },
+                { size: "٢٠,٠٠٠$", price: "٧٦$" }
+            ],
+            phases: [
+                {
+                    phase: "قۆناغا فەندکری",
+                    daily: "٢٪ (دیفچوون)",
+                    max: "٣٪ (دیفچوون)",
+                    target: 'minimuim_withdraw',
+                    consistency: "٢٠٪",
+                    rules: "١٪",
+                    mdays: "نینە",
+                    mdaysNoteKey: 'note_daily_profit_required',
+                    expiration: "٢٤ دەمژمێر",
+                    expirationUnitKey: 'days_duration',
+                    tradenews: 'maven_news',
+                    holdweekends: "بەلێ"
+                }
+            ]
+        }
+    ]
+});
 
     function showPage(event, pageId) {
         if(event) event.preventDefault();
@@ -1075,110 +1398,111 @@
     }
 
     function buildAccountsHtml(firm, modelIndex, activeSizeIndex = 0) {
-        const model = firm.models[modelIndex];
-        if (!model) return '';
+    const model = firm.models[modelIndex];
+    if (!model) return '';
 
-        let sizesHtml = '';
-        let priceHtml = '';
+    let sizesHtml = '';
+    let priceHtml = '';
+    
+    if (model.accounts && model.accounts.length > 0) {
+        const activeAccount = model.accounts[activeSizeIndex] || model.accounts[0];
         
-        if (model.accounts && model.accounts.length > 0) {
-            const activeAccount = model.accounts[activeSizeIndex] || model.accounts[0];
-            
-            sizesHtml = `<div class="size-tabs">`;
-            
-            model.accounts.forEach((acc, idx) => {
-                const activeClass = idx === activeSizeIndex ? 'active' : '';
-                sizesHtml += `<button class="size-tab-btn ${activeClass}" onclick="switchAccountSize(${firm.id}, ${modelIndex}, ${idx})">${acc.size}</button>`;
-            });
-            
-            sizesHtml += `</div>`;
-            
-            priceHtml = `
-                <div class="price-display">
-                    <span>${getTranslation('price_without_discount')}</span>
-                    <b>${activeAccount.price}</b>
-                </div>
-            `;
-        }
+        sizesHtml = `<div class="size-tabs">`;
+        
+        model.accounts.forEach((acc, idx) => {
+            const activeClass = idx === activeSizeIndex ? 'active' : '';
+            sizesHtml += `<button class="size-tab-btn ${activeClass}" onclick="switchAccountSize(${firm.id}, ${modelIndex}, ${idx})">${acc.size}</button>`;
+        });
+        
+        sizesHtml += `</div>`;
+        
+        priceHtml = `
+            <div class="price-display">
+                <span>${getTranslation('price_without_discount')}</span>
+                <b>${activeAccount.price}</b>
+            </div>
+        `;
+    }
 
-        const renderRules = (rulesObj, phaseTitleKey = '') => {
-            const titleHtml = phaseTitleKey ? `<h4 style="margin: 10px 0 5px; color: #d4af37;">${getTranslation(phaseTitleKey)}</h4>` : '';
-            const getRuleValue = (rules, key) => {
-                const val = rules[key];
-                const unitKey = rules[key + 'UnitKey'];
-                const noteKey = rules[key + 'NoteKey'];
+    const renderRules = (rulesObj, phaseTitleKey = '') => {
+        const titleHtml = phaseTitleKey ? `<h4 style="margin: 10px 0 5px; color: #d4af37;">${getTranslation(phaseTitleKey)}</h4>` : '';
 
-                if (val === undefined || val === null || val === "نینە" || val === "") return getTranslation('not_applicable');
-                if (val === "بەلێ") return getTranslation('yes');
-                if (val === "نەخێر") return getTranslation('no');
+        const getRuleValue = (rules, key) => {
+            const val = rules[key];
+            const unitKey = rules[key + 'UnitKey'];
+            const noteKey = rules[key + 'NoteKey'];
 
-                let translatedValue = String(val);
+            if (val === undefined || val === null || val === "نینە" || val === "" || val === "نییە") {
+                return getTranslation('not_applicable');
+            }
 
-                if (typeof val === 'number' && unitKey) {
-                    translatedValue = `${val} ${getTranslation(unitKey)}`;
-                }
-                
-                if (noteKey) {
-                    translatedValue += ` ${getTranslation(noteKey)}`;
-                }
+            if (val === "بەلێ") return getTranslation('yes');
+            if (val === "نەخێر") return getTranslation('no');
 
-                return translatedValue;
-            };
+            // 🔥 FIX: translate keys like maven_news
+            let translatedValue = translations[currentLang][val] 
+                ? getTranslation(val) 
+                : String(val);
 
-            return `
-                ${titleHtml}
-                <div class="rules-grid">
-                    <div class="stat-item">${getTranslation('daily_drawdown')} <b>${getRuleValue(rulesObj, 'daily')}</b></div>
-                    <div class="stat-item">${getTranslation('max_drawdown')} <b>${getRuleValue(rulesObj, 'max')}</b></div>
-                    <div class="stat-item">${getTranslation('target_profit')} <b>${getRuleValue(rulesObj, 'target')}</b></div>
-                    <div class="stat-item">${getTranslation('consistency_rule')} <b>${getRuleValue(rulesObj, 'consistency')}</b></div>
-                    <div class="stat-item">${getTranslation('open_trades_drawdown')} <b>${getRuleValue(rulesObj, 'rules')}</b></div>
-                    <div class="stat-item">${getTranslation('min_trading_days')} <b>${getRuleValue(rulesObj, 'mdays')}</b></div>
-                    <div class="stat-item">${getTranslation('account_expiration')} <b>${getRuleValue(rulesObj, 'expiration')}</b></div>
-                    <div class="stat-item">${getTranslation('trade_news')} <b>${getRuleValue(rulesObj, 'tradenews')}</b></div>
-                    <div class="stat-item">${getTranslation('hold_weekends')} <b>${getRuleValue(rulesObj, 'holdweekends')}</b></div>
-                </div>
-            `;
+            if (typeof val === 'number' && unitKey) {
+                translatedValue = `${val} ${getTranslation(unitKey)}`;
+            }
+
+            if (noteKey) {
+                translatedValue += ` ${getTranslation(noteKey)}`;
+            }
+
+            return translatedValue;
         };
 
-        let rulesContent = '';
+        return `
+            ${titleHtml}
+            <div class="rules-grid">
+                <div class="stat-item">${getTranslation('daily_drawdown')} <b>${getRuleValue(rulesObj, 'daily')}</b></div>
+                <div class="stat-item">${getTranslation('max_drawdown')} <b>${getRuleValue(rulesObj, 'max')}</b></div>
+                <div class="stat-item">${getTranslation('target_profit')} <b>${getRuleValue(rulesObj, 'target')}</b></div>
+                <div class="stat-item">${getTranslation('consistency_rule')} <b>${getRuleValue(rulesObj, 'consistency')}</b></div>
+                <div class="stat-item">${getTranslation('open_trades_drawdown')} <b>${getRuleValue(rulesObj, 'rules')}</b></div>
+                <div class="stat-item">${getTranslation('min_trading_days')} <b>${getRuleValue(rulesObj, 'mdays')}</b></div>
+                <div class="stat-item">${getTranslation('account_expiration')} <b>${getRuleValue(rulesObj, 'expiration')}</b></div>
+                <div class="stat-item">${getTranslation('trade_news')} <b>${getRuleValue(rulesObj, 'tradenews')}</b></div>
+                <div class="stat-item">${getTranslation('hold_weekends')} <b>${getRuleValue(rulesObj, 'holdweekends')}</b></div>
+            </div>
+        `;
+    };
 
-        if (model.notes && model.notes.length > 0) {
-            rulesContent += `<div class="notes-section" style="margin-top: 15px; padding: 10px; border: 1px dashed var(--muted); border-radius: 8px;">`;
-            model.notes.forEach(noteKey => {
-                rulesContent += `<p style="font-size: 0.9em; margin-bottom: 5px; color: var(--muted);"><i class="fas fa-info-circle" style="margin-inline-end: 5px;"></i> ${getTranslation(noteKey)}</p>`;
-            });
-            rulesContent += `</div>`;
-        }
+    let rulesContent = '';
 
-        if (model.phases && Array.isArray(model.phases) && model.phases.length > 0) {
-            rulesContent += model.phases.map(phase => {
-                let phaseKey = '';
-                if (phase.phase === 'قۆناغا هەڵسەنگاندنێ') phaseKey = 'phase_evaluation';
-                else if (phase.phase === 'قۆناغا فەندکری') phaseKey = 'phase_funded';
-                else if (phase.phase === 'قۆناغا ئێکێ') phaseKey = 'phase_one';
-                else if (phase.phase === 'قۆناغا دووێ') phaseKey = 'phase_two';
-                else if (phase.phase === 'قۆناغا سیێ') phaseKey = 'phase_three';
-                
-                return `
-                    <div class="phase-card" style="margin-top: 20px;">
-                        ${renderRules(phase, phaseKey)}
-                    </div>
-                `;
-            }).join('<hr style="border-color:#333; margin:20px 0;">');
-        } else {
-            const hasDirectRules = ['daily', 'max', 'target', 'consistency', 'rules', 'mdays', 'expiration', 'tradenews', 'holdweekends'].some(key => model[key] !== undefined && model[key] !== null);
-            if (hasDirectRules) {
-                rulesContent += `
-                    <div class="model-rules-card" style="margin-top: 20px;">
-                        ${renderRules(model, '')}
-                    </div>
-                `;
-            }
-        }
-
-        return sizesHtml + priceHtml + rulesContent;
+    if (model.notes && model.notes.length > 0) {
+        rulesContent += `<div class="notes-section" style="margin-top: 15px; padding: 10px; border: 1px dashed var(--muted); border-radius: 8px;">`;
+        model.notes.forEach(noteKey => {
+            rulesContent += `<p style="font-size: 0.9em; margin-bottom: 5px; color: var(--muted);">
+                <i class="fas fa-info-circle"></i> ${getTranslation(noteKey)}
+            </p>`;
+        });
+        rulesContent += `</div>`;
     }
+
+    if (model.phases && Array.isArray(model.phases) && model.phases.length > 0) {
+        rulesContent += model.phases.map(phase => {
+            let phaseKey = '';
+
+            if (phase.phase === 'قۆناغا هەڵسەنگاندنێ') phaseKey = 'phase_evaluation';
+            else if (phase.phase === 'قۆناغا فەندکری') phaseKey = 'phase_funded';
+            else if (phase.phase === 'قۆناغا ئێکێ') phaseKey = 'phase_one';
+            else if (phase.phase === 'قۆناغا دووێ') phaseKey = 'phase_two';
+            else if (phase.phase === 'قۆناغا سیێ') phaseKey = 'phase_three';
+            
+            return `
+                <div class="phase-card" style="margin-top: 20px;">
+                    ${renderRules(phase, phaseKey)}
+                </div>
+            `;
+        }).join('<hr style="border-color:#333; margin:20px 0;">');
+    }
+
+    return sizesHtml + priceHtml + rulesContent;
+}
 
     function attachChevsIn(rootEl = document) {
         const nodes = rootEl.querySelectorAll('.tabs, .size-tabs');
@@ -1289,6 +1613,61 @@
         renderAbout();
     });
 
+    function calculateConsistency() {
+        triggerHaptic(); // Added haptic feedback for mobile app feel
+        
+        const biggestDay = parseFloat(document.getElementById('biggestDay').value);
+        const totalProfit = parseFloat(document.getElementById('totalProfit').value);
+        const targetPercent = parseFloat(document.getElementById('targetPercent').value);
+
+        if (isNaN(biggestDay) || isNaN(totalProfit) || isNaN(targetPercent)) {
+            alert(getTranslation('calc_error'));
+            return;
+        }
+
+        if (totalProfit === 0) {
+            alert(getTranslation('calc_error_zero'));
+            return;
+        }
+
+        const currentScore = (biggestDay / totalProfit) * 100;
+        const requiredProfit = biggestDay / (targetPercent / 100);
+        const profitNeeded = requiredProfit - totalProfit;
+
+        const resultsSection = document.getElementById('resultsSection');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const statusBox = document.getElementById('statusBox');
+        const mathExplanation = document.getElementById('mathExplanation');
+
+        resultsSection.style.display = 'block';
+        scoreDisplay.innerText = currentScore.toFixed(1) + "%";
+
+        if (currentScore <= targetPercent) {
+            statusBox.style.backgroundColor = "rgba(40, 167, 69, 0.15)";
+            statusBox.style.color = "#4ade80"; // Bright Green
+            statusBox.style.border = "1px solid #4ade80";
+            statusBox.innerHTML = getTranslation('calc_status_pass');
+            
+            let passMsg = getTranslation('calc_pass_msg')
+                .replace('{score}', currentScore.toFixed(1))
+                .replace('{target}', targetPercent)
+                .replace('{biggest}', biggestDay.toLocaleString());
+            mathExplanation.innerHTML = passMsg;
+        } else {
+            statusBox.style.backgroundColor = "rgba(220, 53, 69, 0.15)";
+            statusBox.style.color = "#f87171"; // Bright Red
+            statusBox.style.border = "1px solid #f87171";
+            statusBox.innerHTML = getTranslation('calc_status_fail');
+            
+            let failMsg = getTranslation('calc_fail_msg')
+                .replace(/\{score\}/g, currentScore.toFixed(1))
+                .replace(/\{target\}/g, targetPercent)
+                .replace('{biggest}', biggestDay.toLocaleString())
+                .replace('{required}', requiredProfit.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 2}))
+                .replace('{needed}', profitNeeded.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 2}));
+            mathExplanation.innerHTML = failMsg;
+        }
+    }
 
     function triggerHaptic() {
         if (window.Telegram?.WebApp?.HapticFeedback) {
@@ -1305,4 +1684,3 @@
 </script>
 </body>
 </html>
-
